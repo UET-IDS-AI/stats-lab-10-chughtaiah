@@ -204,15 +204,16 @@ def zero_rho_covariance_check(n=100000):
     )
 
     cov_matrix = sample_covariance_matrix(x, y)
-
     covariance = cov_matrix[0, 1]
 
-    return abs(covariance) < 0.05
+    result = abs(covariance) < 0.05
+
+    return bool(result)
 
 
 def nonzero_rho_covariance_check(n=100000):
     """
-    Generate samples with rho=0.6 and verify covariance is nonzero.
+    Generate samples with rho=0.6 and verify covariance is close to 3.6.
     """
 
     x, y = generate_joint_gaussian_samples(
@@ -222,7 +223,8 @@ def nonzero_rho_covariance_check(n=100000):
     )
 
     cov_matrix = sample_covariance_matrix(x, y)
-
     covariance = cov_matrix[0, 1]
 
-    return abs(covariance - 3.6) < 0.15
+    result = abs(covariance - 3.6) < 0.15
+
+    return bool(result)
